@@ -1,7 +1,8 @@
 #include "Game.h"
 
 // remove when release
-//#include "Windows.h"
+#include <Windows.h>
+#include <stdio.h>
 #include <iostream>
 // end of remove when release
 
@@ -10,7 +11,6 @@ Game* g_game = 0;
 
 int main(int argc, char* argv[])
 {
-	// std::cout << "test";
 	// remove when release
 	//AllocConsole();
 	//freopen("CON", "w", stdout);

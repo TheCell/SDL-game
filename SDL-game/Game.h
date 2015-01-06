@@ -21,11 +21,14 @@ public:
 	bool running() { return m_bRunning; }
 
 private:
+	bool m_bRunning;
 
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 
-	bool m_bRunning;
+	SDL_Texture* m_pTexture; // the new SDL_Texture variable
+	SDL_Rect m_sourceRectangle; // the first rectangle
+	SDL_Rect m_destinationRectangle; // another rectangle
 };
 
 #endif /* defined(__Game__) */

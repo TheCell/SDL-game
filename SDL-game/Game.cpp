@@ -17,8 +17,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width,
 		}
 		std::cout << "SDL init success\n";
 		// init the window
-		m_pWindow = SDL_CreateWindow(title, xpos, ypos,
-			width, height, flags);
+		m_pWindow = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
 		if (m_pWindow != 0) // window init success
 		{
 			std::cout << "window creation success\n";
@@ -52,13 +51,17 @@ bool Game::init(const char* title, int xpos, int ypos, int width,
 	m_bRunning = true; // everything inited successfully,
 	// start the main loop
 
-	SDL_Surface* pTempSurface = SDL_LoadBMP("assets/rider.bmp");
+	SDL_Surface* pTempSurface = SDL_LoadBMP("assets/animate.bmp");
 
 	m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
 
 	SDL_FreeSurface(pTempSurface);
 
-	SDL_QueryTexture(m_pTexture, NULL, NULL, &m_sourceRectangle.w, &m_sourceRectangle.h);
+	// no need if we know the dimensions
+	//SDL_QueryTexture(m_pTexture, NULL, NULL, &m_sourceRectangle.w, &m_sourceRectangle.h);
+
+	m_sourceRectangle.w = 128;
+	m_sourceRectangle.h = 82;
 
 	m_destinationRectangle.x = m_sourceRectangle.x = 0;
 	m_destinationRectangle.y = m_sourceRectangle.y = 0;
@@ -79,7 +82,7 @@ void Game::render()
 
 void Game::clean()
 {
-	//std::cout << "cleaning game\n";
+	std::cout << "cleaning game\n";
 	SDL_DestroyWindow(m_pWindow);
 	SDL_DestroyRenderer(m_pRenderer);
 	SDL_Quit();
@@ -87,7 +90,7 @@ void Game::clean()
 
 void Game::update()
 {
-
+	m_sourceRectangle.x = 128 * int((SDL_GetTicks() / 100) % 6);
 }
 
 void Game::handleEvents()

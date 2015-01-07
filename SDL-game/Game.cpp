@@ -33,7 +33,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width,
 			}
 			else
 			{
-				//std::cout << "renderer init fail\n";
+				std::cout << "renderer init fail\n";
 				return false; // renderer init fail
 			}
 		}
@@ -63,7 +63,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width,
 	m_destinationRectangle.x = m_sourceRectangle.x = 0;
 	m_destinationRectangle.y = m_sourceRectangle.y = 0;
 	m_destinationRectangle.w = m_sourceRectangle.w;
-	m_destinationRectangle.h = m_sourceRectangle.y;
+	m_destinationRectangle.h = m_sourceRectangle.h;
 
 	return true;
 }

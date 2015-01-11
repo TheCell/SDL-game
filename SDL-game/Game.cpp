@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <SDL_image.h>
 // remove when release
 #include <iostream>
 // end of remove when release
@@ -51,7 +52,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width,
 	m_bRunning = true; // everything inited successfully,
 	// start the main loop
 
-	SDL_Surface* pTempSurface = SDL_LoadBMP("assets/animate.bmp");
+	SDL_Surface* pTempSurface = IMG_Load("assets/animate-alpha.png");
+	SDL_SetRenderDrawColor(m_pRenderer, 255, 0, 0, 255);
 
 	m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
 
@@ -75,7 +77,8 @@ void Game::render()
 {
 	SDL_RenderClear(m_pRenderer); // clear the renderer to the draw color
 
-	SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
+	SDL_RenderCopyEx(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle, 0, 0, SDL_FLIP_HORIZONTAL); // pass in the horizontal flip
+	//SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
 
 	SDL_RenderPresent(m_pRenderer); // draw to the screen
 }

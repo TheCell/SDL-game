@@ -2,6 +2,7 @@
 #define __Game__
 
 #include "SDL.h"
+#include "TextureManager.h"
 
 class Game
 {
@@ -26,9 +27,8 @@ private:
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 
-	SDL_Texture* m_pTexture; // the new SDL_Texture variable
-	SDL_Rect m_sourceRectangle; // the first rectangle
-	SDL_Rect m_destinationRectangle; // another rectangle
+	int m_currentFrame;
+	TextureManager SDL_TextureManager;
 };
 
 #endif /* defined(__Game__) */

@@ -1,8 +1,12 @@
 #include "Game.h"
 #include <SDL_image.h>
+
 // remove when release
 #include <iostream>
 // end of remove when release
+
+
+typedef TextureManager TheTextureManager;
 
 bool Game::init(const char* title, int xpos, int ypos, int width,
 	int height, bool fullscreen)
@@ -52,7 +56,16 @@ bool Game::init(const char* title, int xpos, int ypos, int width,
 	m_bRunning = true; // everything inited successfully,
 	// start the main loop
 
-	SDL_TextureManager.load("assets/animate-alpha.png", "animate", m_pRenderer);
+	// to load
+	if (!TheTextureManager::Instance()->load("assets/animate-alpha.png", "animate", m_pRenderer))
+	{
+		return false;
+	}
+
+	// to draw
+	TheTextureManager::Instance()->draw("animate", 0, 0, 128, 82, m_pRenderer);
+
+	//SDL_TextureManager.load("assets/animate-alpha.png", "animate", m_pRenderer);
 	SDL_SetRenderDrawColor(m_pRenderer, 255, 0, 0, 255);
 
 	return true;
@@ -62,8 +75,10 @@ void Game::render()
 {
 	SDL_RenderClear(m_pRenderer); // clear the renderer to the draw color
 
-	SDL_TextureManager.draw("animate", 0, 0, 128, 82, m_pRenderer);
-	SDL_TextureManager.drawFrame("animate", 100, 100, 128, 82, 1, m_currentFrame, m_pRenderer);
+	TheTextureManager::Instance()->draw("animate", 0, 0, 128, 82, m_pRenderer);
+	TheTextureManager::Instance()->drawFrame("animate", 100, 100, 128, 82, 1, m_currentFrame, m_pRenderer);
+	//SDL_TextureManager.draw("animate", 0, 0, 128, 82, m_pRenderer);
+	//SDL_TextureManager.drawFrame("animate", 100, 100, 128, 82, 1, m_currentFrame, m_pRenderer);
 
 	SDL_RenderPresent(m_pRenderer); // draw to the screen
 }

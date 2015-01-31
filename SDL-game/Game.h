@@ -28,7 +28,6 @@ private:
 	SDL_Renderer* m_pRenderer;
 
 	int m_currentFrame;
-	TextureManager SDL_TextureManager;
 };
 
 #endif /* defined(__Game__) */

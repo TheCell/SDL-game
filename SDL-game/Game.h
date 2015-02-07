@@ -3,6 +3,7 @@
 
 #include "SDL.h"
 #include "TextureManager.h"
+#include "Player.h"
 
 class Game
 {
@@ -20,6 +21,9 @@ public:
 
 	// a function to access the private running variable
 	bool running() { return m_bRunning; }
+
+	GameObject m_go;
+	Player m_player;
 
 private:
 	bool m_bRunning;

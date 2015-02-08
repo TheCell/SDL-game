@@ -1,10 +1,9 @@
-#ifndef __Player__
-#define __Player__
+#ifndef __Enemy__
+#define __Enemy__
 
 #include "GameObject.h"
-#include "TextureManager.h"
 
-class Player : public GameObject // inherit from GameObject
+class Enemy : public GameObject // inherit from Player
 {
 public:
 
